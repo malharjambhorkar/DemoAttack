@@ -1,0 +1,7 @@
+event_id,timestamp,email,password_preview,password_length,status,otp_preview,note
+c2eff3b8,2026-05-17 17:42:27,demo@example.com,P**********!,12,Password captured,-,Redacted demo record only. No raw password stored.
+1f2e15fa,2026-05-17 17:44:17,malhar.jambhorkar232@vitedu,1***5,5,Password captured,-,Redacted demo record only. No raw password stored.
+be99503d,2026-05-17 18:30:22,demo@example.com,P**********!,12,Password captured,-,Recovered malformed legacy demo row.
+f384d494,2026-05-17 18:32:07,demo@example.com,P**********!,12,Blocked by MFA,1****6,"Attacker had the password, but the OTP step blocked account takeover."
+a250f273,2026-05-17 18:34:23,malhar.jambhorkar232@vitedu,1***5,5,Password captured,-,Redacted demo record only. No raw password or OTP stored.
+1b40d24a,2026-05-17 18:35:03,john.doe@example.com,1****6,6,Blocked by MFA,2***5,"Attacker had the password, but the OTP step blocked account takeover."

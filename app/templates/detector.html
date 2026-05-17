@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Phishing Detector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="shell detector-shell">
+        <section class="card detector-card">
+            <div class="eyebrow">Countermeasure</div>
+            <h1>AI-Assisted Phishing URL Detector</h1>
+            <p class="lead">
+                Enter a URL to evaluate signs commonly associated with phishing pages and brand impersonation.
+            </p>
+
+            <form method="post" class="detector-form">
+                <input type="text" name="url" placeholder="Example: http://secure-g00gle-login-alert.xyz" required>
+                <button type="submit" class="button primary">Analyze URL</button>
+            </form>
+
+            {% if analysis %}
+            <div class="analysis {{ 'risk' if analysis.prediction == 'Suspicious' else 'safe' }}">
+                <div class="score">{{ analysis.probability }}%</div>
+                <div>
+                    <h2>{{ analysis.prediction }}</h2>
+                    <p class="subtle break">{{ analysis.url }}</p>
+                </div>
+            </div>
+
+            <div class="grid two">
+                <article class="card soft">
+                    <h3>Why it was flagged</h3>
+                    {% if analysis.flags %}
+                        <ul class="tip-list compact">
+                            {% for flag in analysis.flags %}
+                                <li>{{ flag }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No strong warning signs were found in the URL structure.</p>
+                    {% endif %}
+                </article>
+                <article class="card soft">
+                    <h3>Recommended action</h3>
+                    <ul class="tip-list compact">
+                        {% for tip in analysis.tips %}
+                            <li>{{ tip }}</li>
+                        {% endfor %}
+                    </ul>
+                </article>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
