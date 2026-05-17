@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulation Result</title>
+    <title>Captured Access Attempt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,11 +12,11 @@
 <body>
     <main class="shell narrow">
         <section class="card spotlight">
-            <div class="eyebrow danger">What the attacker learns</div>
-            <h1>The page convinced the user to submit data</h1>
+            <div class="eyebrow danger">Captured Access Attempt</div>
+            <h1>The sign-in page successfully collected credentials</h1>
             <p class="lead">
-                This awareness demo logs a safe preview instead of real secrets so you can show the risk
-                without actually collecting passwords.
+                This is the compromise point in the flow. To keep the project safe, the application stores
+                a masked preview instead of the raw secret.
             </p>
             <div class="log-preview">
                 <div><strong>Email:</strong> {{ record.email }}</div>
@@ -24,14 +24,17 @@
                 <div><strong>Password length:</strong> {{ record.password_length }} characters</div>
                 <div><strong>Time:</strong> {{ record.timestamp }}</div>
             </div>
+            <div class="mini-banner danger-soft">
+                The attacker may know the password now, but they still need to pass the second factor to reach the real account.
+            </div>
             <div class="actions">
                 <form action="{{ url_for('main.mfa') }}" method="post" class="inline-form">
                     <input type="hidden" name="event_id" value="{{ record.event_id }}">
                     <input type="hidden" name="email" value="{{ record.email }}">
-                    <button type="submit" class="button primary">Continue to MFA Demo</button>
+                    <button type="submit" class="button primary">Continue to MFA Check</button>
                 </form>
-                <a class="button tertiary" href="{{ url_for('main.dashboard') }}">Open Dashboard</a>
-                <a class="button secondary" href="{{ url_for('main.detector') }}">Run URL Detection</a>
+                <a class="button tertiary" href="{{ url_for('main.dashboard') }}">View Evidence Dashboard</a>
+                <a class="button secondary" href="{{ url_for('main.detector') }}">Analyze Suspicious URL</a>
             </div>
         </section>
     </main>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awareness Simulation</title>
+    <title>Account Sign-In Verification</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,38 +12,70 @@
 <body class="sim-body">
     <main class="sim-layout">
         <section class="notice-panel">
-            <div class="eyebrow">Presentation Mode</div>
-            <h1>Phishing Awareness Simulation</h1>
+            <div class="top-note compact">Educational lab. This screen is intentionally styled like a real sign-in flow while keeping all captured values masked.</div>
+            <div class="eyebrow">Incident Entry Point</div>
+            <h1>Urgent account verification request</h1>
             <p>
-                This page intentionally mimics a login flow for educational use. Submitted passwords are
-                never stored in raw form. The demo log only keeps a masked preview.
+                A user receives a routine-looking prompt to confirm their account after unusual activity.
+                The layout, branding, and urgency are what make phishing effective.
             </p>
-            <ul class="tip-list">
-                <li>Attackers often copy branding and layout.</li>
-                <li>Visual trust is not the same as domain trust.</li>
-                <li>MFA can stop account takeover even after password exposure.</li>
-            </ul>
+
+            <div class="email-card">
+                <div class="mail-head">
+                    <span>Security Notification</span>
+                    <span>09:41 AM</span>
+                </div>
+                <h3>Unusual sign-in activity detected</h3>
+                <p>
+                    We detected a new sign-in attempt from an unrecognized browser. Verify your account
+                    details to keep access uninterrupted.
+                </p>
+                <div class="mail-tags">
+                    <span>Urgency</span>
+                    <span>Brand imitation</span>
+                    <span>Credential lure</span>
+                </div>
+            </div>
+
             <div class="actions">
-                <a class="button secondary" href="{{ url_for('main.detector') }}">Go to Detector</a>
-                <a class="button tertiary" href="{{ url_for('main.demo_log') }}">View Demo Log</a>
+                <a class="button tertiary" href="{{ url_for('main.dashboard') }}">Open Evidence Dashboard</a>
+                <a class="button secondary" href="{{ url_for('main.detector') }}">Open Detector</a>
             </div>
         </section>
 
         <section class="login-mock">
-            <div class="mock-window">
+            <div class="mock-window premium">
                 <div class="mock-bar">
                     <span></span><span></span><span></span>
                 </div>
                 <div class="login-card">
-                    <div class="brand">PhotoShare</div>
-                    <p class="subtle">Sign in to continue</p>
+                    <div class="brand-wrap">
+                        <div class="brand-mark">P</div>
+                        <div>
+                            <div class="brand">PhotoShare</div>
+                            <div class="brand-sub">Account security center</div>
+                        </div>
+                    </div>
+
+                    <div class="trust-row">
+                        <span>Identity check</span>
+                        <span>Protected session</span>
+                    </div>
+
+                    <p class="subtle">Verify your account to continue</p>
                     <form action="{{ url_for('main.awareness_login') }}" method="post">
                         <input type="email" name="email" placeholder="Email or username" required>
                         <input type="password" name="password" placeholder="Password" required>
-                        <button type="submit" class="button primary full">Log in</button>
+                        <button type="submit" class="button primary full">Confirm Sign-In</button>
                     </form>
+
+                    <div class="login-meta">
+                        <span>Reason: new browser login</span>
+                        <span>Region: Pune, IN</span>
+                    </div>
+
                     <p class="tiny">
-                        In a real attack, this is where a victim may think they are on a trusted site.
+                        Small educational note: this is a safe classroom simulation. Raw passwords are never stored.
                     </p>
                 </div>
             </div>

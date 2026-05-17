@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Awareness Demo</title>
+    <title>Demo Attack Phishing and Counter Measure</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,40 +12,60 @@
 <body>
     <main class="shell">
         <section class="hero">
-            <div class="eyebrow">Cybersecurity Mini Project</div>
-            <h1>Phishing Attack Simulation and AI-Based Defense</h1>
+            <div class="top-note">Educational lab environment. This project demonstrates phishing risk and defensive controls without storing raw secrets.</div>
+            <div class="eyebrow">Security Awareness Lab</div>
+            <h1>Demo Attack Phishing and Counter Measure</h1>
             <p class="lead">
-                A presentation-ready Flask demo that shows how deceptive login pages trick users,
-                why MFA matters, and how automated URL screening can help detect suspicious links.
+                A realistic end-to-end phishing awareness project with a credential lure page,
+                a blocked MFA step, an evidence dashboard, and an AI-assisted URL detector.
             </p>
             <div class="actions">
-                <a class="button primary" href="{{ url_for('main.simulation') }}">Open Simulation</a>
-                <a class="button secondary" href="{{ url_for('main.detector') }}">Try Detector</a>
+                <a class="button primary" href="{{ url_for('main.simulation') }}">Start Attack Flow</a>
+                <a class="button secondary" href="{{ url_for('main.detector') }}">Open URL Detector</a>
             </div>
         </section>
 
         <section class="grid three">
             <article class="card">
-                <h2>1. Awareness Simulation</h2>
+                <h2>1. Credential Lure</h2>
                 <p>
-                    A realistic fake login experience for classroom demonstration. The app stores only
-                    a redacted preview to keep the demo safe.
+                    A believable login page shows how visual trust can be exploited. The backend stores
+                    only masked previews so the project stays safe to demo.
                 </p>
             </article>
             <article class="card">
-                <h2>2. URL Risk Analysis</h2>
+                <h2>2. Account Defense</h2>
                 <p>
-                    The detector uses URL features such as HTTPS usage, digit-heavy domains, suspicious
-                    keywords, and unusual structure.
+                    A second-factor checkpoint blocks the takeover attempt and makes the security story
+                    stronger than a basic phishing mockup.
                 </p>
             </article>
             <article class="card">
-                <h2>3. Countermeasures</h2>
+                <h2>3. Detection Layer</h2>
                 <p>
-                    Reinforce best practices: domain verification, avoiding email login links, and using
-                    multi-factor authentication.
+                    The detector analyzes suspicious URL patterns such as digits, hyphens, weak protocol
+                    choices, subdomains, and lure keywords.
                 </p>
             </article>
+        </section>
+
+        <section class="flow-strip">
+            <div class="flow-card">
+                <span>Step 1</span>
+                <strong>User sees a convincing sign-in page</strong>
+            </div>
+            <div class="flow-card">
+                <span>Step 2</span>
+                <strong>Credentials are submitted and safely redacted</strong>
+            </div>
+            <div class="flow-card">
+                <span>Step 3</span>
+                <strong>MFA prevents account takeover</strong>
+            </div>
+            <div class="flow-card">
+                <span>Step 4</span>
+                <strong>URL detector highlights suspicious links</strong>
+            </div>
         </section>
     </main>
 </body>

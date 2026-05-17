@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MFA Outcome</title>
+    <title>Access Blocked</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,8 +12,8 @@
 <body>
     <main class="shell narrow">
         <section class="card spotlight">
-            <div class="eyebrow">Defense Worked</div>
-            <h1>Account takeover was blocked</h1>
+            <div class="eyebrow">Access Blocked</div>
+            <h1>The attacker could not complete the sign-in</h1>
             <p class="lead">
                 The password alone was not enough. MFA forced an additional verification step and prevented
                 unauthorized access.
@@ -26,9 +26,12 @@
                 <div><strong>Explanation:</strong> {{ record.note }}</div>
             </div>
             {% endif %}
+            <div class="mini-banner safe-soft">
+                This is the key countermeasure in the project flow: stolen credentials do not automatically become a successful takeover.
+            </div>
             <div class="actions">
-                <a class="button primary" href="{{ url_for('main.dashboard') }}">View Security Dashboard</a>
-                <a class="button secondary" href="{{ url_for('main.detector') }}">Test URL Detector</a>
+                <a class="button primary" href="{{ url_for('main.dashboard') }}">Open Security Dashboard</a>
+                <a class="button secondary" href="{{ url_for('main.detector') }}">Open URL Detector</a>
             </div>
         </section>
     </main>

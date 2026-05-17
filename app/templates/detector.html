@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Phishing Detector</title>
+    <title>AI Phishing URL Detector</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,10 +12,12 @@
 <body>
     <main class="shell detector-shell">
         <section class="card detector-card">
-            <div class="eyebrow">Countermeasure</div>
+            <div class="top-note compact">Educational detection panel. The score below is a phishing risk score from 0 to 100, not a login success rate.</div>
+            <div class="eyebrow">Detection Layer</div>
             <h1>AI-Assisted Phishing URL Detector</h1>
             <p class="lead">
-                Enter a URL to evaluate signs commonly associated with phishing pages and brand impersonation.
+                Evaluate domains for suspicious characteristics such as misleading keywords, unusual
+                subdomains, weak protocol usage, fake brand references, and lookalike naming patterns.
             </p>
 
             <form method="post" class="detector-form">
@@ -23,12 +25,40 @@
                 <button type="submit" class="button primary">Analyze URL</button>
             </form>
 
+            <div class="sample-strip">
+                <span>Quick test:</span>
+                <code>https://google.com</code>
+                <code>http://g00gle-login-alert.xyz</code>
+                <code>http://paypal.com.user-check.ru/login</code>
+            </div>
+
             {% if analysis %}
-            <div class="analysis {{ 'risk' if analysis.prediction == 'Suspicious' else 'safe' }}">
-                <div class="score">{{ analysis.probability }}%</div>
+            <div class="analysis {{ 'risk' if analysis.risk_score >= 40 else 'safe' }}">
+                <div class="score-block">
+                    <div class="score-label">Phishing risk</div>
+                    <div class="score">{{ analysis.risk_score }}%</div>
+                </div>
                 <div>
                     <h2>{{ analysis.prediction }}</h2>
+                    <p class="subtle">{{ analysis.verdict }}</p>
                     <p class="subtle break">{{ analysis.url }}</p>
+                </div>
+            </div>
+
+            <div class="metric-strip">
+                <div class="metric-pill">
+                    <span>Rule score</span>
+                    <strong>{{ analysis.rule_score }}%</strong>
+                </div>
+                {% if analysis.model_score is not none %}
+                <div class="metric-pill">
+                    <span>Model assist</span>
+                    <strong>{{ analysis.model_score }}%</strong>
+                </div>
+                {% endif %}
+                <div class="metric-pill">
+                    <span>Meaning</span>
+                    <strong>Higher means more suspicious</strong>
                 </div>
             </div>
 

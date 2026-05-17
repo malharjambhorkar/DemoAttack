@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
 import pandas as pd
 
-from .detector import extract_features, rule_based_flags
+from .detector import classify_risk, extract_features, risk_score_from_rules, rule_based_flags
 from .storage import append_demo_event, read_demo_events, update_demo_event
 
 
@@ -49,23 +49,30 @@ def detector():
         url = request.form.get("url", "").strip()
         features = extract_features(url)
         model = current_app.config["MODEL"]
-        probability = None
-        prediction = None
+        model_score = None
 
         if model is not None:
             feature_frame = pd.DataFrame([features], columns=current_app.config["FEATURE_COLUMNS"])
-            probability = float(model.predict_proba(feature_frame)[0][1])
-            prediction = "Suspicious" if probability >= 0.5 else "Likely safe"
+            model_score = float(model.predict_proba(feature_frame)[0][1]) * 100
+
+        rule_analysis = risk_score_from_rules(url)
+        rule_score = float(rule_analysis["score"])
+
+        if model_score is not None:
+            risk_score = round((rule_score * 0.78) + (model_score * 0.22), 1)
         else:
-            flags = rule_based_flags(url)
-            probability = min(0.15 + (0.16 * len(flags)), 0.98)
-            prediction = "Suspicious" if probability >= 0.5 else "Likely safe"
+            risk_score = round(rule_score, 1)
+
+        risk_label, verdict = classify_risk(risk_score)
 
         analysis = {
             "url": url,
-            "prediction": prediction,
-            "probability": round(probability * 100, 1),
-            "flags": rule_based_flags(url),
+            "prediction": risk_label,
+            "verdict": verdict,
+            "risk_score": risk_score,
+            "rule_score": round(rule_score, 1),
+            "model_score": round(model_score, 1) if model_score is not None else None,
+            "flags": rule_analysis["flags"],
             "tips": [
                 "Check the exact domain, not just the logo or page design.",
                 "Avoid login links from email or SMS. Type the known URL manually.",

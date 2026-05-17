@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.python-version
+
+data/demo_events.csv
+demo_events.csv
+
+models/phishing_model.pkl
+phishing_model.pkl
+
+.DS_Store
+Thumbs.db

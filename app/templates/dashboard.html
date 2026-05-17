@@ -13,22 +13,23 @@
     <main class="shell">
         <section class="dashboard-head">
             <div>
-                <div class="eyebrow">Presentation Dashboard</div>
-                <h1>Phishing Impact and Defense Overview</h1>
+                <div class="top-note compact">Educational dashboard. Values shown here are intentionally masked for safe demonstration.</div>
+                <div class="eyebrow">Security Dashboard</div>
+                <h1>Attack evidence and countermeasure outcome</h1>
                 <p class="lead">
-                    This dashboard visualizes how phishing can capture credentials and how multi-factor
-                    authentication reduces the chance of a successful account takeover.
+                    Review the captured event trail, show where the attack succeeded, and highlight
+                    where multi-factor authentication interrupted the takeover.
                 </p>
             </div>
             <div class="actions">
-                <a class="button secondary" href="{{ url_for('main.simulation') }}">Run Simulation Again</a>
+                <a class="button secondary" href="{{ url_for('main.simulation') }}">Restart Attack Flow</a>
                 <a class="button tertiary" href="{{ url_for('main.reset_demo') }}">Clear Demo Data</a>
             </div>
         </section>
 
         <section class="grid stats-grid">
             <article class="stat-card">
-                <span class="stat-label">Simulation Attempts</span>
+                <span class="stat-label">Credential Submission Attempts</span>
                 <strong class="stat-value">{{ stats.total_events }}</strong>
             </article>
             <article class="stat-card">
@@ -47,16 +48,15 @@
 
         <section class="grid two dashboard-grid">
             <article class="card">
-                <h2>Why this matters</h2>
                 <ul class="tip-list compact">
-                    <li>A realistic page can still trick users into entering passwords.</li>
-                    <li>Branding alone is not proof that a website is legitimate.</li>
-                    <li>MFA creates a second barrier after password theft.</li>
-                    <li>Detection tools help identify suspicious links before users sign in.</li>
+                    <li>The user trusted the page because it looked routine and urgent.</li>
+                    <li>The attacker gained a password preview but not unrestricted account access.</li>
+                    <li>MFA interrupted the final takeover step.</li>
+                    <li>The detector helps identify malicious links before sign-in happens.</li>
                 </ul>
             </article>
             <article class="card">
-                <h2>Recent Demo Events</h2>
+                <h2>Recent Evidence</h2>
                 <div class="table-wrap">
                     <table>
                         <thead>
